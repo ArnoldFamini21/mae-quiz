@@ -1,5 +1,5 @@
-import React, { useMemo, useState, useEffect, useCallback, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useMemo, useEffect, useCallback, useRef } from "react";
+import { motion as Motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowLeft, RefreshCw, BookOpen, ShoppingBag, Home, Sparkles, Check } from "lucide-react";
 import { useLocalStorage, useKeyboardNav } from "../utils";
 import { DecorativeStar, WatercolorBackground } from "../components/shared";
@@ -168,7 +168,7 @@ function deriveAttachmentStyle(metrics) {
 /* ── Screen Components ── */
 function IntroScreen({ onStart, onNavigate }) {
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }} className="min-h-[80vh] flex flex-col justify-center items-center px-4 relative">
+    <Motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }} className="min-h-[80vh] flex flex-col justify-center items-center px-4 relative">
       <DecorativeStar className="w-5 h-5 text-cyan-400 absolute md:top-20 top-10 md:left-[20%] left-[10%] animate-pulse" />
       <DecorativeStar className="w-6 h-6 text-fuchsia-400 absolute md:bottom-32 bottom-20 md:right-[20%] right-[10%] opacity-60" />
 
@@ -197,11 +197,11 @@ function IntroScreen({ onStart, onNavigate }) {
           </button>
         </div>
       </div>
-    </motion.div>
+    </Motion.div>
   );
 }
 
-function QuestionCard({ question, questionIndex, totalQuestions, selected, onSelect, progress, onBack, isLast, onNext }) {
+function QuestionCard({ question, questionIndex, totalQuestions, selected, onSelect, progress, onBack, onNext }) {
   const isSingleChoice = question.type === "single_choice";
   const options = isSingleChoice ? question.options : LIKERT;
 
@@ -217,7 +217,7 @@ function QuestionCard({ question, questionIndex, totalQuestions, selected, onSel
     <div className="w-full relative pt-12 pb-28 px-4 min-h-[85vh] flex flex-col">
        {/* Minimalist Progress Bar */}
        <div className="fixed top-0 left-0 w-full h-1.5 bg-slate-100/50 backdrop-blur z-50">
-          <motion.div 
+          <Motion.div 
              initial={{ width: 0 }} 
              animate={{ width: `${progress}%` }} 
              transition={{ duration: 0.5 }} 
@@ -225,7 +225,7 @@ function QuestionCard({ question, questionIndex, totalQuestions, selected, onSel
           />
        </div>
 
-      <motion.div key={question.id} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ type: "spring", stiffness: 70, damping: 15 }} className="w-full max-w-3xl mx-auto flex-grow flex flex-col justify-center">
+      <Motion.div key={question.id} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ type: "spring", stiffness: 70, damping: 15 }} className="w-full max-w-3xl mx-auto flex-grow flex flex-col justify-center">
         
         <div className="mb-10">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-indigo-400/80 mb-5 flex items-center gap-2">
@@ -241,7 +241,7 @@ function QuestionCard({ question, questionIndex, totalQuestions, selected, onSel
           {options.map((option, idx) => {
             const isSelected = selected === option.value;
             return (
-              <motion.button
+              <Motion.button
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.05 }}
@@ -259,16 +259,16 @@ function QuestionCard({ question, questionIndex, totalQuestions, selected, onSel
                     "flex h-6 w-6 shrink-0 items-center justify-center rounded-full border transition-all duration-300",
                     isSelected ? "border-violet-600 bg-violet-600 scale-110" : "border-slate-300 bg-white group-hover:border-slate-400",
                   ].join(" ")}>
-                  {isSelected && <motion.div layoutId="bubble_quick" className="h-2.5 w-2.5 rounded-full bg-white" />}
+                  {isSelected && <Motion.div layoutId="bubble_quick" className="h-2.5 w-2.5 rounded-full bg-white" />}
                 </div>
                 <span className={`text-base sm:text-lg transition-colors duration-300 ${isSelected ? "text-violet-900 font-semibold" : "text-slate-700 font-medium"}`}>
                   {option.label}
                 </span>
-              </motion.button>
+              </Motion.button>
             );
           })}
         </div>
-      </motion.div>
+      </Motion.div>
 
       {/* Bottom Nav Bar */}
       <div className="fixed bottom-0 left-0 w-full p-5 bg-gradient-to-t from-[#FDFDFE] via-[#FDFDFE]/90 to-transparent z-40">
@@ -301,7 +301,6 @@ function QuestionCard({ question, questionIndex, totalQuestions, selected, onSel
 function ResultCard({ resultKey, metrics, confidence, demo, onRestart, onNavigate }) {
   const style = STYLES[resultKey];
   const result = RESULTS[resultKey];
-  const links = RESULT_LINKS[resultKey];
 
   const snapshot = [
     { label: "Attachment anxiety", value: metrics.averages.anxiety, gradient: STYLES.anxious.accent },
@@ -312,7 +311,7 @@ function ResultCard({ resultKey, metrics, confidence, demo, onRestart, onNavigat
   const parentTitle = demo.children === "yes" ? `${result.title} as a parent or caregiver` : `${result.title} in a caregiving role`;
 
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }} className="w-full max-w-4xl mx-auto py-16 px-4">
+    <Motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }} className="w-full max-w-4xl mx-auto py-16 px-4">
       {/* Editorial Header */}
       <div className="text-center mb-20 relative">
         <DecorativeStar className={`w-8 h-8 opacity-40 absolute -top-8 left-1/2 -translate-x-1/2 ${style.textGradient.split(' ')[0].replace('from-', 'text-')}`} />
@@ -363,7 +362,7 @@ function ResultCard({ resultKey, metrics, confidence, demo, onRestart, onNavigat
                         <span className="text-slate-800 font-bold">{item.value.toFixed(2)}</span>
                       </div>
                       <div className="h-2.5 rounded-full bg-slate-100/50 overflow-hidden">
-                        <motion.div
+                        <Motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${width}%` }}
                           transition={{ duration: 1.5, delay: 0.2 + idx * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
@@ -410,7 +409,7 @@ function ResultCard({ resultKey, metrics, confidence, demo, onRestart, onNavigat
           Full Assessment <ArrowRight className="w-4 h-4" />
         </button>
       </div>
-    </motion.div>
+    </Motion.div>
   );
 }
 
@@ -510,7 +509,6 @@ export default function QuickQuiz({ onNavigate }) {
             <QuestionCard
               key={currentQuestion.id} question={currentQuestion} questionIndex={currentIndex} totalQuestions={questions.length}
               selected={selected} onSelect={handleSelect} progress={progress} onBack={handleBack} onNext={handleNext}
-              isLast={currentIndex === questions.length - 1}
             />
           ) : null}
         </AnimatePresence>
