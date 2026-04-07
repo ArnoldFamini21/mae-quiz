@@ -19,20 +19,36 @@ export default function Home({ onNavigate }) {
   return (
     <div className="relative min-h-screen bg-[#FDFDFE] font-sans selection:bg-cyan-200 selection:text-cyan-900 text-slate-800 overflow-hidden">
       
+      {/* ─── Header Top Bar ─── */}
+      <header className="relative z-30 w-full bg-[#FDFDFE] border-b border-slate-100 px-4 sm:px-12 py-3 sm:py-4 flex flex-row justify-between items-center gap-2">
+         <nav className="flex items-center gap-4 sm:gap-6 text-[10px] sm:text-[12px] font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase text-slate-500">
+            <a href="https://buymeacoffee.com/mollywritesmentalhealth/extras" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-600 transition-colors">Store</a>
+            <a href="https://medium.com/my-avoidant-ex" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-600 transition-colors">Deep Dives</a>
+         </nav>
+         <nav className="flex items-center gap-3 sm:gap-5 text-slate-400">
+            <a href="https://www.youtube.com/@my-avoidant-ex" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-600 transition-colors" aria-label="YouTube">
+               <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="mailto:mollywritesmentalhealth@gmail.com" className="hover:text-cyan-600 transition-colors" aria-label="Email">
+               <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </a>
+         </nav>
+      </header>
+
       {/* ─── Banner with gradient fade ─── */}
-      <div className="relative w-full bg-white z-20">
+      <div className="relative w-full bg-[#FDFDFE] z-20">
         <img
           src="/banner.png"
           alt="My Avoidant Ex — Understand · Heal · Reclaim"
           loading="eager"
           className="w-full h-auto object-cover max-h-[300px] sm:max-h-[380px]"
         />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[rgba(253,253,254,1)] via-[rgba(253,253,254,0.7)] to-transparent pointer-events-none"></div>
+        <div className="absolute inset-x-0 bottom-0 h-[60%] sm:h-40 bg-gradient-to-t from-[#FDFDFE] via-[#FDFDFE]/70 to-transparent pointer-events-none"></div>
       </div>
 
       <WatercolorBackground />
 
-      <div className="mx-auto max-w-5xl px-6 sm:px-12 pt-12 pb-24 relative z-10">
+      <div className="mx-auto max-w-5xl px-4 sm:px-12 pt-6 sm:pt-12 pb-20 sm:pb-24 relative z-10">
         {/* ─── Hero section ─── */}
         <motion.section
           initial="hidden"
@@ -47,7 +63,7 @@ export default function Home({ onNavigate }) {
           <motion.h1
             variants={fadeUp}
             custom={0}
-            className="font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-tight"
+            className="font-serif text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-tight text-balance"
           >
             <span className="text-slate-800">Welcome to the</span> <br />
             <span className="italic bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-600 via-violet-600 to-cyan-500 pr-2">
@@ -58,7 +74,7 @@ export default function Home({ onNavigate }) {
           <motion.p
             variants={fadeUp}
             custom={1}
-            className="mt-8 text-lg sm:text-xl text-slate-600 font-light leading-relaxed tracking-wide"
+            className="mt-6 sm:mt-8 text-[17px] sm:text-xl text-slate-600 font-light leading-relaxed tracking-wide text-balance px-2"
           >
             Understanding your attachment style could change your relationships for the better.
           </motion.p>
@@ -70,7 +86,7 @@ export default function Home({ onNavigate }) {
           <motion.p
             variants={fadeUp}
             custom={3}
-            className="mt-8 text-[15px] sm:text-base leading-relaxed text-slate-600 max-w-2xl mx-auto font-serif relative"
+            className="mt-8 text-[15px] sm:text-base leading-relaxed text-slate-600 max-w-2xl mx-auto relative"
           >
             The way you connect, pull away, overthink, or shut down is a pattern that was learned in
             childhood or through experiences in life. The pattern is predictable and <span className="font-medium text-cyan-700/80">something you can work on</span>. By understanding your attachment style, you can improve your relationships in all
@@ -98,7 +114,7 @@ export default function Home({ onNavigate }) {
             {/* Quick Quiz Column */}
             <motion.button type="button" variants={fadeUp} custom={5} className="relative z-10 p-10 md:p-14 flex flex-col items-center text-center group cursor-pointer hover:bg-white/80 transition-all duration-500 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none hover:shadow-[0_0_40px_-15px_rgba(6,182,212,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2" onClick={() => onNavigate("quick-quiz")}>
               <span className="text-xs font-bold tracking-widest text-cyan-500 uppercase mb-4">~5 Minutes</span>
-              <h2 className="font-serif text-3xl text-slate-800 mb-4 group-hover:text-cyan-700 transition-colors">Quick Snapshot</h2>
+              <h2 className="font-sans font-semibold text-3xl text-slate-800 mb-4 group-hover:text-cyan-700 transition-colors">Quick Snapshot</h2>
               <p className="text-sm font-medium text-slate-500 mb-6 font-serif italic border-b border-cyan-100/50 pb-6 w-full group-hover:border-cyan-200 transition-colors">16 core questions</p>
               <p className="text-[15px] leading-relaxed text-slate-600 mb-10 flex-grow px-4">
                 A fast, directionally accurate snapshot of your likely attachment pattern. Perfect if you are short on time but want immediate insights.
@@ -111,7 +127,7 @@ export default function Home({ onNavigate }) {
             {/* Full Assessment Column */}
             <motion.button type="button" variants={fadeUp} custom={6} className="relative z-10 p-10 md:p-14 flex flex-col items-center text-center group cursor-pointer hover:bg-white/80 transition-all duration-500 rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none hover:shadow-[0_0_40px_-15px_rgba(192,38,211,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-400 focus-visible:ring-offset-2" onClick={() => onNavigate("full-assessment")}>
               <span className="text-xs font-bold tracking-widest text-fuchsia-500 uppercase mb-4">~12 Minutes</span>
-              <h2 className="font-serif text-3xl text-slate-800 mb-4 group-hover:text-fuchsia-700 transition-colors">Full Assessment</h2>
+              <h2 className="font-sans font-semibold text-3xl text-slate-800 mb-4 group-hover:text-fuchsia-700 transition-colors">Full Assessment</h2>
               <p className="text-sm font-medium text-slate-500 mb-6 font-serif italic border-b border-fuchsia-100/50 pb-6 w-full group-hover:border-fuchsia-200 transition-colors">70+ adaptive questions</p>
               <p className="text-[15px] leading-relaxed text-slate-600 mb-10 flex-grow px-4">
                 A deeper, multi-layered assessment across relationships, behavior, and emotional patterns. Our most comprehensive self-discovery tool.
