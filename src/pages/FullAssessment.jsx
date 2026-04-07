@@ -424,11 +424,8 @@ function QuestionCard({ question, questionIndex, totalQuestions, selected, onSel
                <ArrowLeft className="w-4 h-4" /> Back
             </button>
             
-            {/* Mobile: show tap hint, Desktop: keyboard hints */}
+            {/* Mobile: show tap hint */}
             <div className="text-[10px] text-slate-400 font-semibold tracking-widest uppercase text-center">
-               <span className="hidden sm:inline">
-                  Keyboard: <span className="px-1.5 py-0.5 rounded border border-slate-200 bg-white/50 mx-0.5">↑</span> <span className="px-1.5 py-0.5 rounded border border-slate-200 bg-white/50 mx-0.5">↓</span> <span className="px-1.5 py-0.5 rounded border border-slate-200 bg-white/50 mx-0.5">ENTER</span>
-               </span>
                <span className="sm:hidden text-slate-400/70 italic tracking-wider">
                   {selected != null ? "Advancing…" : "Tap an answer"}
                </span>
@@ -530,8 +527,13 @@ function ResultCard({ resultKey, metrics, confidence, demo, onRestart, onNavigat
             {/* Next Steps */}
             <div className="bg-slate-900 text-white p-8 sm:p-12 rounded-[2rem] shadow-2xl">
                <h3 className="font-serif text-3xl mb-4">Moving Forward</h3>
+               <p className="text-slate-300 font-light leading-relaxed mb-6 max-w-lg">
+                 You've completed the full assessment. The metrics above represent a comprehensive snapshot of your internal world. Take your time to digest this.
+               </p>
                <p className="text-slate-300 font-light leading-relaxed mb-10 max-w-lg">
-                 You've completed the full assessment. The metrics above represent a comprehensive snapshot of your internal world. Take your time to digest this. We've listed resources below tailored to your style.
+                 <a href="https://medium.com/my-avoidant-ex" target="_blank" rel="noopener noreferrer" className="text-fuchsia-400 hover:text-fuchsia-300 underline decoration-fuchsia-400/30 hover:decoration-fuchsia-300/80 transition-colors">
+                   Read more on your attachment style in the My Avoidant Ex publication here.
+                 </a>
                </p>
                <div className="flex flex-col sm:flex-row gap-4">
                  <button onClick={() => onNavigate("home")} className="px-8 py-4 bg-white text-slate-900 rounded-full font-bold uppercase tracking-widest text-[12px] hover:bg-slate-100 transition-colors flex items-center justify-center gap-2">

@@ -4,10 +4,10 @@ import { ArrowRight } from "lucide-react";
 import { DecorativeStar, WatercolorBackground, fadeUp } from "../components/shared";
 
 const ATTACHMENT_LINKS = [
-  { label: "Secure", href: "#" },
-  { label: "Anxious Preoccupied", href: "#" },
-  { label: "Dismissive Avoidant", href: "#" },
-  { label: "Fearful Avoidant", href: "#" },
+  { label: "Secure", href: "https://medium.com/my-avoidant-ex" },
+  { label: "Anxious Preoccupied", href: "https://medium.com/my-avoidant-ex" },
+  { label: "Dismissive Avoidant", href: "https://medium.com/my-avoidant-ex" },
+  { label: "Fearful Avoidant", href: "https://medium.com/my-avoidant-ex" },
 ];
 
 export default function Home({ onNavigate }) {
@@ -147,13 +147,15 @@ export default function Home({ onNavigate }) {
                  </div>
                  <div className="sm:col-span-8 flex flex-wrap gap-3">
                     {ATTACHMENT_LINKS.map((link) => (
-                      <span
+                      <a
                         key={link.label}
-                        className="px-5 py-2.5 bg-white border border-violet-100 text-[13px] uppercase tracking-wider font-bold text-violet-900 rounded-full shadow-[0_2px_10px_-4px_rgba(139,92,246,0.1)] cursor-default opacity-80"
-                        title="Coming soon"
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-5 py-2.5 bg-white border border-violet-100 text-[13px] uppercase tracking-wider font-bold text-violet-900 rounded-full shadow-[0_2px_10px_-4px_rgba(139,92,246,0.1)] hover:bg-violet-50 transition-colors"
                       >
                         {link.label}
-                      </span>
+                      </a>
                     ))}
                  </div>
               </motion.div>
@@ -165,9 +167,9 @@ export default function Home({ onNavigate }) {
                  </div>
                  <div className="sm:col-span-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                     <p className="text-base text-slate-600 max-w-sm">Guided resources designed to help you work with your patterns, not against them.</p>
-                    <span className="inline-flex items-center gap-2 text-[13px] font-bold tracking-widest uppercase text-fuchsia-600 shrink-0 bg-fuchsia-50/80 px-5 py-2.5 rounded-full border border-fuchsia-100/50 opacity-80 cursor-default" title="Coming soon">
+                    <a href="https://buymeacoffee.com/mollywritesmentalhealth/extras" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[13px] font-bold tracking-widest uppercase text-fuchsia-600 shrink-0 bg-fuchsia-50/80 px-5 py-2.5 rounded-full border border-fuchsia-100/50 hover:bg-fuchsia-100/80 transition-colors">
                       Browse the store <ArrowRight className="w-4 h-4" />
-                    </span>
+                    </a>
                  </div>
               </motion.div>
 
@@ -178,9 +180,9 @@ export default function Home({ onNavigate }) {
                  </div>
                  <div className="sm:col-span-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                     <p className="text-base text-slate-600 max-w-sm">Understand why avoidants pull away and push-pull cycles happen.</p>
-                    <span className="inline-flex items-center gap-2 text-[13px] font-bold tracking-widest uppercase text-cyan-600 shrink-0 bg-cyan-50/80 px-5 py-2.5 rounded-full border border-cyan-100/50 opacity-80 cursor-default" title="Coming soon">
+                    <a href="https://medium.com/my-avoidant-ex" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[13px] font-bold tracking-widest uppercase text-cyan-600 shrink-0 bg-cyan-50/80 px-5 py-2.5 rounded-full border border-cyan-100/50 hover:bg-cyan-100/80 transition-colors">
                       Go to publication <ArrowRight className="w-4 h-4" />
-                    </span>
+                    </a>
                  </div>
               </motion.div>
            </div>
