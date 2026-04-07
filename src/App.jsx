@@ -1,7 +1,18 @@
-import React, { useState, useEffect } from "react";
-import Home from "./pages/Home";
-import QuickQuiz from "./pages/QuickQuiz";
-import FullAssessment from "./pages/FullAssessment";
+import React, { useState, useEffect, lazy, Suspense } from "react";
+
+const Home = lazy(() => import("./pages/Home"));
+const QuickQuiz = lazy(() => import("./pages/QuickQuiz"));
+const FullAssessment = lazy(() => import("./pages/FullAssessment"));
+
+function PageFallback() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-[#FDFDFE]">
+      <div className="text-xs font-bold uppercase tracking-[0.3em] text-slate-400">
+        Loading…
+      </div>
+    </div>
+  );
+}
 
 function App() {
   const [page, setPage] = useState(() => {
@@ -24,11 +35,11 @@ function App() {
   };
 
   return (
-    <>
+    <Suspense fallback={<PageFallback />}>
       {page === "home" && <Home onNavigate={navigate} />}
       {page === "quick-quiz" && <QuickQuiz onNavigate={navigate} />}
       {page === "full-assessment" && <FullAssessment onNavigate={navigate} />}
-    </>
+    </Suspense>
   );
 }
 
