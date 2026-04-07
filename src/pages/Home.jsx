@@ -102,17 +102,17 @@ export default function Home({ onNavigate }) {
           className="mt-28"
         >
           <motion.div variants={fadeUp} custom={4} className="flex justify-center mb-14 relative">
-             <p className="text-xs font-semibold tracking-[0.2em] uppercase text-cyan-600 flex items-center gap-3">
-                <DecorativeStar className="w-3 h-3 text-fuchsia-400" /> 
+             <p className="text-xl sm:text-2xl font-bold tracking-[0.2em] uppercase text-cyan-600 flex items-center gap-4 sm:gap-6">
+                <DecorativeStar className="w-6 h-6 sm:w-7 sm:h-7 text-fuchsia-400" /> 
                 Choose Your Assessment 
-                <DecorativeStar className="w-3 h-3 text-cyan-400" />
+                <DecorativeStar className="w-6 h-6 sm:w-7 sm:h-7 text-cyan-400" />
              </p>
           </motion.div>
           
           <div className="grid md:grid-cols-2 gap-0 border-t border-b border-cyan-100/50 divide-y md:divide-y-0 md:divide-x divide-cyan-100/50 backdrop-blur-sm bg-white/30 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
             
             {/* Quick Quiz Column */}
-            <motion.button type="button" variants={fadeUp} custom={5} className="relative z-10 p-10 md:p-14 flex flex-col items-center text-center group cursor-pointer hover:bg-white/80 transition-all duration-500 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none hover:shadow-[0_0_40px_-15px_rgba(6,182,212,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2" onClick={() => onNavigate("quick-quiz")}>
+            <motion.button type="button" variants={fadeUp} custom={5} className="relative z-10 p-10 md:p-14 flex flex-col items-center text-center group cursor-pointer bg-gradient-to-br from-cyan-50 to-cyan-100 hover:from-cyan-100 hover:to-cyan-200 transition-all duration-500 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none hover:shadow-[0_0_40px_-15px_rgba(6,182,212,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2" onClick={() => onNavigate("quick-quiz")}>
               <span className="text-xs font-bold tracking-widest text-cyan-500 uppercase mb-4">~5 Minutes</span>
               <h2 className="font-sans font-semibold text-3xl text-slate-800 mb-4 group-hover:text-cyan-700 transition-colors">Quick Snapshot</h2>
               <p className="text-sm font-medium text-slate-500 mb-6 font-serif italic border-b border-cyan-100/50 pb-6 w-full group-hover:border-cyan-200 transition-colors">16 core questions</p>
@@ -125,7 +125,7 @@ export default function Home({ onNavigate }) {
             </motion.button>
 
             {/* Full Assessment Column */}
-            <motion.button type="button" variants={fadeUp} custom={6} className="relative z-10 p-10 md:p-14 flex flex-col items-center text-center group cursor-pointer hover:bg-white/80 transition-all duration-500 rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none hover:shadow-[0_0_40px_-15px_rgba(192,38,211,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-400 focus-visible:ring-offset-2" onClick={() => onNavigate("full-assessment")}>
+            <motion.button type="button" variants={fadeUp} custom={6} className="relative z-10 p-10 md:p-14 flex flex-col items-center text-center group cursor-pointer bg-gradient-to-bl from-fuchsia-50 to-fuchsia-100 hover:from-fuchsia-100 hover:to-fuchsia-200 transition-all duration-500 rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none hover:shadow-[0_0_40px_-15px_rgba(192,38,211,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-400 focus-visible:ring-offset-2" onClick={() => onNavigate("full-assessment")}>
               <span className="text-xs font-bold tracking-widest text-fuchsia-500 uppercase mb-4">~12 Minutes</span>
               <h2 className="font-sans font-semibold text-3xl text-slate-800 mb-4 group-hover:text-fuchsia-700 transition-colors">Full Assessment</h2>
               <p className="text-sm font-medium text-slate-500 mb-6 font-serif italic border-b border-fuchsia-100/50 pb-6 w-full group-hover:border-fuchsia-200 transition-colors">70+ adaptive questions</p>
@@ -152,7 +152,7 @@ export default function Home({ onNavigate }) {
         >
            <motion.div variants={fadeUp} custom={0} className="mb-12 relative">
               <DecorativeStar className="w-6 h-6 text-cyan-200 absolute -top-10 -left-10" />
-              <h2 className="font-serif text-3xl sm:text-4xl text-slate-800 mb-4">What To Do With Your Result</h2>
+              <h2 className="font-sans font-semibold text-3xl sm:text-4xl text-slate-800 mb-4">What To Do With Your Result</h2>
               <p className="text-lg text-slate-600 font-light relative z-10">
                 Once you have your result, the next step is understanding what it actually means in your real life. You can go deeper here:
               </p>
@@ -162,7 +162,7 @@ export default function Home({ onNavigate }) {
               {/* Row 1 — Read your style */}
               <motion.div variants={fadeUp} custom={1} className="py-10 border-b border-violet-100/60 grid sm:grid-cols-12 gap-8 items-start hover:bg-white/60 transition-colors duration-500 rounded-xl px-6 -mx-6 group backdrop-blur-sm">
                  <div className="sm:col-span-4">
-                    <h3 className="font-serif text-2xl text-slate-800 group-hover:text-violet-700 transition-colors">Read your style</h3>
+                    <h3 className="font-sans font-semibold text-2xl text-slate-800 group-hover:text-violet-700 transition-colors">Read your style</h3>
                     <p className="mt-2 text-sm text-slate-500 leading-relaxed max-w-[200px]">Deep dives into the psychology of each attachment pattern.</p>
                  </div>
                  <div className="sm:col-span-8 flex flex-wrap gap-3">
@@ -183,7 +183,7 @@ export default function Home({ onNavigate }) {
               {/* Row 2 — Explore tools */}
               <motion.div variants={fadeUp} custom={2} className="py-8 border-b border-violet-100/60 grid sm:grid-cols-12 gap-8 items-center hover:bg-white/60 transition-colors duration-500 rounded-xl px-6 -mx-6 group backdrop-blur-sm">
                  <div className="sm:col-span-4">
-                    <h3 className="font-serif text-2xl text-slate-800 group-hover:text-fuchsia-700 transition-colors">Explore tools</h3>
+                    <h3 className="font-sans font-semibold text-2xl text-slate-800 group-hover:text-fuchsia-700 transition-colors">Explore tools</h3>
                  </div>
                  <div className="sm:col-span-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                     <p className="text-base text-slate-600 max-w-sm">Guided resources designed to help you work with your patterns, not against them.</p>
@@ -196,7 +196,7 @@ export default function Home({ onNavigate }) {
               {/* Row 3 — Learn patterns */}
               <motion.div variants={fadeUp} custom={3} className="py-8 border-b border-violet-100/60 grid sm:grid-cols-12 gap-8 items-center hover:bg-white/60 transition-colors duration-500 rounded-xl px-6 -mx-6 group backdrop-blur-sm">
                  <div className="sm:col-span-4">
-                    <h3 className="font-serif text-2xl text-slate-800 group-hover:text-cyan-600 transition-colors">Learn the patterns</h3>
+                    <h3 className="font-sans font-semibold text-2xl text-slate-800 group-hover:text-cyan-600 transition-colors">Learn the patterns</h3>
                  </div>
                  <div className="sm:col-span-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                     <p className="text-base text-slate-600 max-w-sm">Understand why avoidants pull away and push-pull cycles happen.</p>
