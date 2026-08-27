@@ -565,7 +565,7 @@ export default function FullAssessment({ onNavigate }) {
   const [currentIndex, setCurrentIndex] = useLocalStorage("mae_full_index", 0);
   const [showResult, setShowResult] = useLocalStorage("mae_full_result", false);
   const advanceRef = useRef(null);
-  const autoAdvancedAnswersRef = useRef(new Map());
+  const autoAdvancedAnswersRef = useRef(new Map(Object.entries(answersById)));
 
   const demo = useMemo(() => ({
     relationshipStatus: answersById.relationshipStatus,

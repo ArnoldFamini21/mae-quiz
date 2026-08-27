@@ -420,7 +420,7 @@ export default function QuickQuiz({ onNavigate }) {
   const [currentIndex, setCurrentIndex] = useLocalStorage("mae_quick_index", 0);
   const [showResult, setShowResult] = useLocalStorage("mae_quick_result", false);
   const advanceRef = useRef(null);
-  const autoAdvancedAnswersRef = useRef(new Map());
+  const autoAdvancedAnswersRef = useRef(new Map(Object.entries(answersById)));
 
   const questions = useMemo(() => QUESTIONS, []);
   const answers = useMemo(() => questions.map((q) => answersById[q.id] ?? null), [questions, answersById]);
