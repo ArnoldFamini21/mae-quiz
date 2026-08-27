@@ -50,7 +50,7 @@ export default function Home({ onNavigate, isEmbedded }) {
 
       <WatercolorBackground />
 
-      <div className={`mx-auto max-w-5xl px-4 sm:px-12 ${isEmbedded ? "pt-12" : "pt-6 sm:pt-12"} pb-20 sm:pb-24 relative z-10`}>
+      <div className={`mx-auto max-w-5xl px-4 sm:px-12 ${isEmbedded ? "pt-32 sm:pt-36" : "pt-6 sm:pt-12"} pb-20 sm:pb-24 relative z-10`}>
         {/* ─── Hero section ─── */}
         <motion.section
           initial="hidden"
