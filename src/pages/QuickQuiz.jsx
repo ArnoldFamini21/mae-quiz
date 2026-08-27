@@ -420,7 +420,7 @@ export default function QuickQuiz({ onNavigate }) {
   const [currentIndex, setCurrentIndex] = useLocalStorage("mae_quick_index", 0);
   const [showResult, setShowResult] = useLocalStorage("mae_quick_result", false);
   const advanceRef = useRef(null);
-  const autoAdvancedAnswersRef = useRef(new Map(Object.entries(answersById)));
+  const suppressAutoAdvanceRef = useRef(true);
 
   const questions = useMemo(() => QUESTIONS, []);
   const answers = useMemo(() => questions.map((q) => answersById[q.id] ?? null), [questions, answersById]);
@@ -444,10 +444,14 @@ export default function QuickQuiz({ onNavigate }) {
     if (!started || showResult || !currentQuestion) return;
     
     const currentAnswer = answersById[currentQuestion.id];
-    if (currentAnswer == null) return;
-    if (autoAdvancedAnswersRef.current.get(currentQuestion.id) === currentAnswer) return;
-
-    autoAdvancedAnswersRef.current.set(currentQuestion.id, currentAnswer);
+    if (currentAnswer == null) {
+      suppressAutoAdvanceRef.current = false;
+      return;
+    }
+    if (suppressAutoAdvanceRef.current) {
+      suppressAutoAdvanceRef.current = false;
+      return;
+    }
     
     advanceRef.current = setTimeout(() => {
       if (currentIndex === questions.length - 1) {
@@ -484,12 +488,13 @@ export default function QuickQuiz({ onNavigate }) {
       advanceRef.current = null;
     }
     if (currentIndex === 0) return;
+    suppressAutoAdvanceRef.current = true;
     setCurrentIndex((prev) => prev - 1);
   }, [currentIndex, setCurrentIndex]);
   
   function handleRestart() {
     if (advanceRef.current) clearTimeout(advanceRef.current);
-    autoAdvancedAnswersRef.current.clear();
+    suppressAutoAdvanceRef.current = true;
     setStarted(false);
     setAnswersById({});
     setCurrentIndex(0);

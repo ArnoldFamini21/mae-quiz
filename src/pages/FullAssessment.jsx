@@ -565,7 +565,7 @@ export default function FullAssessment({ onNavigate }) {
   const [currentIndex, setCurrentIndex] = useLocalStorage("mae_full_index", 0);
   const [showResult, setShowResult] = useLocalStorage("mae_full_result", false);
   const advanceRef = useRef(null);
-  const autoAdvancedAnswersRef = useRef(new Map(Object.entries(answersById)));
+  const suppressAutoAdvanceRef = useRef(true);
 
   const demo = useMemo(() => ({
     relationshipStatus: answersById.relationshipStatus,
@@ -591,10 +591,14 @@ export default function FullAssessment({ onNavigate }) {
     if (!started || showResult || !currentQuestion) return;
     
     const currentAnswer = answersById[currentQuestion.id];
-    if (currentAnswer == null) return;
-    if (autoAdvancedAnswersRef.current.get(currentQuestion.id) === currentAnswer) return;
-
-    autoAdvancedAnswersRef.current.set(currentQuestion.id, currentAnswer);
+    if (currentAnswer == null) {
+      suppressAutoAdvanceRef.current = false;
+      return;
+    }
+    if (suppressAutoAdvanceRef.current) {
+      suppressAutoAdvanceRef.current = false;
+      return;
+    }
     
     advanceRef.current = setTimeout(() => {
       if (currentIndex === questions.length - 1) {
@@ -633,13 +637,14 @@ export default function FullAssessment({ onNavigate }) {
       advanceRef.current = null;
     }
     if (currentIndex === 0) return;
+    suppressAutoAdvanceRef.current = true;
     setCurrentIndex((prev) => prev - 1);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentIndex, setCurrentIndex]);
 
   function handleRestart() {
     if (advanceRef.current) clearTimeout(advanceRef.current);
-    autoAdvancedAnswersRef.current.clear();
+    suppressAutoAdvanceRef.current = true;
     setStarted(false);
     setAnswersById({});
     setCurrentIndex(0);
