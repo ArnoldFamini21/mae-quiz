@@ -565,6 +565,7 @@ export default function FullAssessment({ onNavigate }) {
   const [currentIndex, setCurrentIndex] = useLocalStorage("mae_full_index", 0);
   const [showResult, setShowResult] = useLocalStorage("mae_full_result", false);
   const advanceRef = useRef(null);
+  const autoAdvancedAnswersRef = useRef(new Map());
 
   const demo = useMemo(() => ({
     relationshipStatus: answersById.relationshipStatus,
@@ -591,6 +592,9 @@ export default function FullAssessment({ onNavigate }) {
     
     const currentAnswer = answersById[currentQuestion.id];
     if (currentAnswer == null) return;
+    if (autoAdvancedAnswersRef.current.get(currentQuestion.id) === currentAnswer) return;
+
+    autoAdvancedAnswersRef.current.set(currentQuestion.id, currentAnswer);
     
     advanceRef.current = setTimeout(() => {
       if (currentIndex === questions.length - 1) {
@@ -635,6 +639,7 @@ export default function FullAssessment({ onNavigate }) {
 
   function handleRestart() {
     if (advanceRef.current) clearTimeout(advanceRef.current);
+    autoAdvancedAnswersRef.current.clear();
     setStarted(false);
     setAnswersById({});
     setCurrentIndex(0);
