@@ -605,6 +605,7 @@ export default function FullAssessment({ onNavigate }) {
         setShowResult(true);
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
+        suppressAutoAdvanceRef.current = true;
         setCurrentIndex((prev) => prev + 1);
         window.scrollTo({ top: 0, behavior: "smooth" });
       }

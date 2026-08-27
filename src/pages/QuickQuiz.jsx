@@ -457,6 +457,7 @@ export default function QuickQuiz({ onNavigate }) {
       if (currentIndex === questions.length - 1) {
         setShowResult(true);
       } else {
+        suppressAutoAdvanceRef.current = true;
         setCurrentIndex((prev) => prev + 1);
       }
     }, 300);
