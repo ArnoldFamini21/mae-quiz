@@ -14,7 +14,36 @@ function PageFallback() {
   );
 }
 
+function EmbedHeightReporter() {
+  useEffect(() => {
+    if (window.parent === window) return undefined;
+
+    const reportHeight = () => {
+      const height = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight,
+      );
+      window.parent.postMessage({ source: "mae-quiz", type: "resize", height }, "*");
+    };
+
+    const observer = new ResizeObserver(reportHeight);
+    observer.observe(document.documentElement);
+    window.addEventListener("load", reportHeight);
+    reportHeight();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("load", reportHeight);
+    };
+  }, []);
+
+  return null;
+}
+
 function App() {
+  const isEmbedded = new URLSearchParams(window.location.search).has("embed");
   const [page, setPage] = useState(() => {
     const hash = window.location.hash.slice(1);
     return hash || "home";
@@ -36,7 +65,8 @@ function App() {
 
   return (
     <Suspense fallback={<PageFallback />}>
-      {page === "home" && <Home onNavigate={navigate} />}
+      <EmbedHeightReporter />
+      {page === "home" && <Home onNavigate={navigate} isEmbedded={isEmbedded} />}
       {page === "quick-quiz" && <QuickQuiz onNavigate={navigate} />}
       {page === "full-assessment" && <FullAssessment onNavigate={navigate} />}
     </Suspense>

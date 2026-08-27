@@ -11,7 +11,7 @@ const ATTACHMENT_LINKS = [
   { label: "Fearful Avoidant", href: "https://medium.com/my-avoidant-ex" },
 ];
 
-export default function Home({ onNavigate }) {
+export default function Home({ onNavigate, isEmbedded }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -19,6 +19,7 @@ export default function Home({ onNavigate }) {
   return (
     <div className="relative min-h-screen bg-[#FDFDFE] font-sans selection:bg-cyan-200 selection:text-cyan-900 text-slate-800 overflow-hidden">
       
+      {!isEmbedded && <>
       {/* ─── Header Top Bar ─── */}
       <header className="relative z-30 w-full bg-[#FDFDFE] border-b border-slate-100 px-4 sm:px-12 py-3 sm:py-4 flex flex-row justify-between items-center gap-2">
          <nav className="flex items-center gap-4 sm:gap-6 text-[10px] sm:text-[12px] font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase text-slate-500">
@@ -45,10 +46,11 @@ export default function Home({ onNavigate }) {
         />
         <div className="absolute inset-x-0 bottom-0 h-[60%] sm:h-40 bg-gradient-to-t from-[#FDFDFE] via-[#FDFDFE]/70 to-transparent pointer-events-none"></div>
       </div>
+      </>}
 
       <WatercolorBackground />
 
-      <div className="mx-auto max-w-5xl px-4 sm:px-12 pt-6 sm:pt-12 pb-20 sm:pb-24 relative z-10">
+      <div className={`mx-auto max-w-5xl px-4 sm:px-12 ${isEmbedded ? "pt-12" : "pt-6 sm:pt-12"} pb-20 sm:pb-24 relative z-10`}>
         {/* ─── Hero section ─── */}
         <motion.section
           initial="hidden"
